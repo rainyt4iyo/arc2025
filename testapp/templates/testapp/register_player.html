@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>ARC’TERYX CLIMBING DAY Vol.2 2025</title>
+</head>
+<body>
+    <h1>  選手登録フォーム </h1> 
+    <form action="{{ url_for('register_player') }}" method="post" enctype="multipart/form-data">
+        <input type="text" name="name" id="name" placeholder="名前"><br>
+        <select name="category" id="category" placeholder="カテゴリー">
+            <option value="alpha">alpha</option>
+            <option value="beta">beta</option>
+            <option value="gamma">gamma</option>
+        </select><br>
+        <button class="highlighted" type="submit">登録</button>
+    </form>
+    <form action="{{ url_for('register_player') }}" method="post">
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>UUID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>QR</th>
+        <th>削除<th>
+    </tr>
+
+    {% for player in player_list %}
+    <tr>
+        <td>{{ player.id }}</td>
+        <td>{{ player.UUID }}</td>
+        <td>{{ player.name }}</td>
+        <td>{{ player.category }}</td>
+        <td><a href="/qrpage/{{player.UUID}}">QR</a></td>
+        <td>
+            <button name="action" value="{{ player.id }}" type="submit">✖</button>
+        </td>
+    </tr>
+    {% endfor %}
+</body>
+</html>

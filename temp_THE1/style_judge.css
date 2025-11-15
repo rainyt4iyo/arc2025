@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f5f5;
+  color: #212121;
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.mt-4 {
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 25px 0;
+  padding: 20px;
+  color: #ffffff;
+  background: #000000;
+  border: 3px solid #757575;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3.heading-green {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  color: #ffffff;
+  background: #292929;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.05em;
+}
+
+br {
+  display: block;
+  content: "";
+  margin: 10px 0;
+}
+
+/* ボタン共通スタイル */
+button {
+  display: block;
+  width: 100%;
+  margin: 15px 0;
+  padding: 18px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.05em;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 戻るボタン */
+.black_button {
+  background: #292929;
+  color: #ffffff;
+  border: 2px solid #616161;
+  font-size: 1.5rem;
+  padding:20px;
+}
+
+.black_button:hover {
+  background: #616161;
+}
+
+/* 送信ボタン */
+.yellow_button {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
+  color: #1a1a1a;
+  border: 3px solid #ff8f00;
+  font-size: 1.3rem;
+  padding: 20px;
+  margin-top: 25px;
+  box-shadow: 0 4px 15px rgba(255, 183, 0, 0.4);
+}
+
+.yellow_button:hover {
+  background: linear-gradient(135deg, #ffed4e 0%, #ffc107 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 183, 0, 0.5);
+}
+
+.yellow_button:active {
+  transform: translateY(1px);
+}
+
+/* テーブル */
+table {
+  width: 100%;
+  margin: 25px 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e0e0e0;
+}
+
+table tr th {
+  background: #2e2e2e;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.8rem;
+  padding: 18px 15px;
+  text-align: center;
+  letter-spacing: 0.08em;
+  border: none;
+}
+
+table tr td {
+  padding: 20px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fafafa;
+  font-size: 1rem;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+/* チェックボックス行 */
+.checkbox-td {
+  background: #ffffff !important;
+  padding: 25px 15px !important;
+}
+
+.checkbox-td input[type="checkbox"] {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  accent-color: #47474d;
+}
+
+/* セレクトボックス */
+.selectbox-2 {
+  display: block;
+  width: 100%;
+}
+
+.selectbox-2 select {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 2.0rem;
+  font-weight: 600;
+  border: 2px solid #bdbdbd;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #212121;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%23424242" d="M6 8L0 0h12z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 35px;
+}
+
+.selectbox-2 select:focus {
+  outline: none;
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
+}
+
+/* フォーム */
+form {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e0e0e0;
+}
+
+/* スマートフォン最適化 */
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+    padding: 15px;
+  }
+  
+  h3.heading-green {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+  
+  button {
+    padding: 16px 18px;
+    font-size: 1rem;
+  }
+  
+  .yellow_button {
+    font-size: 1.2rem;
+    padding: 18px;
+  }
+  
+  table tr th {
+    font-size: 1.1rem;
+    padding: 15px 10px;
+  }
+  
+  table tr td {
+    padding: 18px 10px;
+    font-size: 0.95rem;
+  }
+  
+  .checkbox-td input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .selectbox-2 select {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+  
+  form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+  
+  table tr th {
+    font-size: 1rem;
+    padding: 12px 8px;
+  }
+  
+  .selectbox-2 select {
+    font-size: 0.95rem;
+  }
+}

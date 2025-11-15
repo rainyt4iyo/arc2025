@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_ranking.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>THE|1 – GIVE IT EVERYTHING – Vol.4 Supported by adidasTERREX-</title>
+</head>
+<body>
+  <div class="container">
+    <h1><b>リアルタイムリザルト </b></h1> 
+    <h2> Live Results </h2>
+    <h3> THE|1  {{category | safe}}  </h3>
+    <br>
+    <table>
+      <tr>
+        <td>RANK</td>
+        <td>NAME</td>
+        <td>SCORE</td>
+        <td>POINT</td>
+      </tr>
+      {% for i in data %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ i.player }}</td>
+          <td>
+            <div class="radio-container">
+              <div class="button-group">
+                {% if i.t1 != 0 and i.t1 != None %}
+                  <input type="button" name="t1_{{ loop.index }}" disabled class="p1 checked" value={{i.t1}}>
+                {% else %}
+                  <input type="button" name="t1_{{ loop.index }}" disabled class="p1">
+                {% endif %}
+                {% if i.z1 != 0 and i.z1 != None %}
+                  <input type="button" name="z1_{{ loop.index }}" disabled class="p1 checked" value={{i.z1}}>
+                {% else %}
+                  <input type="button" name="z1_{{ loop.index }}" disabled class="p1">
+                {% endif %}
+              </div>
+              
+              <div class="button-group">
+                {% if i.t2 != 0 and i.t2 != None %}
+                  <input type="button" name="t2_{{ loop.index }}" disabled class="p2 checked" value={{i.t2}}>
+                {% else %}
+                  <input type="button" name="t2_{{ loop.index }}" disabled class="p2">
+                {% endif %}
+                {% if i.z2 != 0 and i.z2 != None %}
+                  <input type="button" name="z2_{{ loop.index }}" disabled class="p2 checked" value={{i.z2}}>
+                {% else %}
+                  <input type="button" name="z2_{{ loop.index }}" disabled class="p2">
+                {% endif %}
+              </div>
+              
+              <div class="button-group">
+                {% if i.t3 != 0 and i.t3 != None %}
+                  <input type="button" name="t3_{{ loop.index }}" disabled class="p3 checked" value={{i.t3}}>
+                {% else %}
+                  <input type="button" name="t3_{{ loop.index }}" disabled class="p3">
+                {% endif %}
+                {% if i.z3 != 0 and i.z3 != None %}
+                  <input type="button" name="z3_{{ loop.index }}" disabled class="p3 checked" value={{i.z3}}>
+                {% else %}
+                  <input type="button" name="z3_{{ loop.index }}" disabled class="p3">
+                {% endif %}
+              </div>
+              
+              <div class="button-group">
+                {% if i.t4 != 0 and i.t4 != None %}
+                  <input type="button" name="t4_{{ loop.index }}" disabled class="p4 checked" value={{i.t4}}>
+                {% else %}
+                  <input type="button" name="t4_{{ loop.index }}" disabled class="p4">
+                {% endif %}
+                {% if i.z4 != 0 and i.z4 != None %}
+                  <input type="button" name="z4_{{ loop.index }}" disabled class="p4" value={{i.z4}}>
+                {% else %}
+                  <input type="button" name="z4_{{ loop.index }}" disabled class="p4">
+                {% endif %}
+              </div>
+            </div>
+        </td>
+          <td>{{ i.total }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <p size="2">The 1 JudgeSheet Assistant @ T4 and kaiz</p>
+  </div>
+</body>
+</html>

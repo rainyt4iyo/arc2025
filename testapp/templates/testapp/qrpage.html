@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>ARC’TERYX CLIMBING DAY Vol.2 2025</title>
+</head>
+<body>
+    <h1>QRコードページ / QR Code Page</h1>
+    <h2>QRコードを読み込んでください / Scan this QR-CODE</h2>
+    <h3>Name : {{ player.name }} さん</h3>
+    <h4>category : {{player.category}} </h4>
+    
+    <footer>
+        <p> Judgesheet Assistant made by T4 and kaiz. </p>
+    </footer>
+</body>
+</html>

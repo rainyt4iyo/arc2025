@@ -1,0 +1,173 @@
+/* すべての要素にbox-sizingを適用 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 画面全体の基本スタイル */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'メイリオ', 'Meiryo', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #24252e, #000000);
+  color: #0a0a0a;
+  text-align: center;
+}
+
+/* コンテンツラッパー */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* フェードイン */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ヘッダー画像 */
+.header {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 見出し */
+h1, h2 {
+  margin: 1rem 0 0.5rem;
+  position: relative;
+  font-family: 'Ubuntu Mono', monospace;
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.2rem; color: #ffffff; }
+
+h1::after, h2::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 3px;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 1.4rem;
+  line-height: 1.7;
+  color: #272727;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+h2 {
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px rgb(212, 212, 212) solid;
+}
+
+table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+table td {
+  padding: 15px 10px;
+  text-align: center;
+}
+
+table tr:first-child {
+  background-color: #333;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+table tr:first-child td {
+  padding: 12px 10px;
+}
+
+table tr:hover:not(:first-child) {
+  background-color: #f9f9f9;
+}
+
+/* ラジオボタンのスタイリング */
+input[type="button"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #999;
+  background-color: #ddd;
+  cursor: not-allowed;
+  margin: 0;
+  padding: 0;
+  display: block;
+  border-radius: 30%;
+}
+
+input[type="button"].checked {
+  background-color: #37d0ff;
+  border-color: #317a96;
+  color: #ffffff;
+}
+
+/* ラジオボタンコンテナ（横並び） */
+.radio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 各グループ（縦並び） */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ラジオボタン間のマージンをゼロに */
+.button-group input[type="radio"] {
+  margin: 0;
+}
+
+p {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  margin-top: 30px;
+}

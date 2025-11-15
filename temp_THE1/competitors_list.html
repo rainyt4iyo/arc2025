@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_list.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>THE|1 – GIVE IT EVERYTHING – Vol.4 Supported by adidasTERREX-</title>
+</head>
+<body>
+  <div class="container">
+    <h1> 出場選手一覧 </h1> 
+    <h3> - Athletes - </h3>
+    <h2> {{category}} </h2> 
+    <table>
+      <thead>
+      <tr>
+        <th>No.</th>
+        <th>Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for player in listed %}
+      <tr>
+        <td>#{{ player.id }}</td>
+        <td>{{ player.player }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    <p size="2">The 1 JudgeSheet Assistant @ T4 and kaiz</p>
+  </div>
+</body>
+</html>

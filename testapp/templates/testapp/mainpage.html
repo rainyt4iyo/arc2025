@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>ARC’TERYX CLIMBING DAY Vol.2 2025</title>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='images/header_cut.jpg') }}" alt="ARC’TERYX CLIMBING DAY Vol.2 2025 Header Image">
+    <h2>ABOUT "CLIMBING DAY"</h2>
+    <main>
+        <button onclick="location.href='https://arcteryx.jp/pages/climbing_day_at_ogikubo_20251129'">概要 / Overview</button>
+        <button onclick="location.href='/rules'">ルール / Rules</button>
+        <button class="highlighted" onclick="location.href='/input/{{UUID}}'">記録フォームへ / Input Form</button>
+    </main>
+    <footer>
+        <p> Judgesheet Assistant made by T4 and kaiz. </p>
+    </footer>
+</body>
+</html>

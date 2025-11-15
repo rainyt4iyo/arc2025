@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_judge.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>ジャッジエリア  {{ area }}</title>
+</head>
+<body>
+
+<div class="container mt-4">
+
+  <button class="black_button" onclick="location.href='/judge/{{ category }}/{{ problem }}'">戻る / BACK</button>
+  
+    <h3 class="heading-green">Info : {{ cat_name }}, {{ problem }}</h3>
+
+    <h1>No.{{ player_number }} : {{ player_name }}</h1>
+
+    <form action="/judge/{{ category }}/{{ problem }}/{{ player_number }}" method="POST">
+        <table border="1">
+            <tr>
+                <th>ZONE</th>
+                <th>TOP</th>
+            </tr>
+            <tr>
+                <td class="checkbox-td">
+                    {% if zonegot == 0%}
+                    <input type="checkbox" name="zone">
+                    {% else %}
+                    <input type="checkbox" name="zone" checked>
+                    {% endif %}
+                </td>
+                <td class="checkbox-td">
+                    {% if topgot == 0%}
+                    <input type="checkbox" name="top">
+                    {% else %}
+                    <input type="checkbox" name="top" checked>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="selectbox-2">
+                        <select name="zone_attempt">
+                            {% for i in range(31) %}
+                                {% if i == zonegot %}
+                                <option selected>{{ i }}</option>
+                                {% else %}
+                                <option>{{ i }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </label>
+                </td>
+                <td>
+                    <label class="selectbox-2">
+                        <select name="top_attempt">
+                            {% for i in range(31) %}
+                                {% if i == topgot %}
+                                <option selected>{{ i }}</option>
+                                {% else %}  
+                                <option>{{ i }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button class="yellow_button" type="submit">送信 / Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

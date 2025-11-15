@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_test.css') }}"/>
+    <title>ADMIN</title>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">THE 1</a>
+    <ul class="nav-menu">
+      <ul class="nav-menu">
+      <li><a href="/competitors">選手一覧</a></li>
+      <li><a href="/admin/judge">ジャッジ管理</a></li>
+      <li><a href="/ranking_lobby">リザルト</a></li>
+      <li><a href="/">メインページ</a></li>
+    </ul>
+    </ul>
+  </div>
+</nav>
+<h2>THE 1 ADMIN</h2>
+<p>予選</p> 
+<h3>DAY1 男子</h3>
+<button class="admin_button" onclick="location.href='/judge/asp_men/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/asp_men/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/asp_men/p3'">第3課題</button>
+<button class="admin_button" onclick="location.href='/judge/asp_men/p4'">第4課題</button>
+<h3>DAY1 女子</h3>
+<button class="admin_button" onclick="location.href='/judge/asp_wmn/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/asp_wmn/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/asp_wmn/p3'">第3課題</button>
+<button class="admin_button" onclick="location.href='/judge/asp_wmn/p4'">第4課題</button>
+<h3>DAY2 男子</h3>
+<button class="admin_button" onclick="location.href='/judge/fin_men/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/fin_men/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/fin_men/p3'">第3課題</button>
+<button class="admin_button" onclick="location.href='/judge/fin_men/p4'">第4課題</button>
+<h3>DAY2 女子</h3>
+<button class="admin_button" onclick="location.href='/judge/fin_wmn/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/fin_wmn/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/fin_wmn/p3'">第3課題</button>
+<button class="admin_button" onclick="location.href='/judge/fin_wmn/p4'">第4課題</button>
+<p>決勝</p> 
+<h3>DAY1 男子</h3>
+<button class="admin_button" onclick="location.href='/judge/f_asp_men/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_asp_men/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_asp_men/p3'">第3課題</button>
+<h3>DAY1 女子</h3>
+<button class="admin_button" onclick="location.href='/judge/f_asp_wmn/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_asp_wmn/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_asp_wmn/p3'">第3課題</button>
+<h3>DAY2 男子</h3>
+<button class="admin_button" onclick="location.href='/judge/f_fin_men/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_fin_men/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_fin_men/p3'">第3課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_fin_men/p4'">第4課題</button>
+<h3>DAY2 女子</h3>
+<button class="admin_button" onclick="location.href='/judge/f_fin_wmn/p1'">第1課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_fin_wmn/p2'">第2課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_fin_wmn/p3'">第3課題</button>
+<button class="admin_button" onclick="location.href='/judge/f_fin_wmn/p4'">第4課題</button>
+</body>
+</html>

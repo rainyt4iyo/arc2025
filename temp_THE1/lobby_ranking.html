@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_test.css') }}"/>
+    <title>ADMIN</title>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">THE 1</a>
+    <ul class="nav-menu">
+      <ul class="nav-menu">
+      <li><a href="/competitors">選手一覧</a></li>
+      <li><a href="/admin/judge">ジャッジ管理</a></li>
+      <li><a href="/ranking_lobby">リザルト</a></li>
+      <li><a href="/">メインページ</a></li>
+    </ul>
+    </ul>
+  </div>
+</nav>
+<h2>THE 1 ADMIN</h2>
+<button class="admin_button" onclick="location.href='/ranking/asp_men'">ASPIRANT 男子</button>
+<button class="admin_button" onclick="location.href='/ranking/asp_wmn'">ASPIRANT 女子</button>
+<br>
+<br>
+<button class="admin_button" onclick="location.href='/ranking/fin_men'">FINALS 男子</button>
+<button class="admin_button" onclick="location.href='/ranking/fin_wmn'">FINALS 女子</button>
+</body>
+</html>

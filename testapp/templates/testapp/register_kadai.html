@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>ARC’TERYX CLIMBING DAY Vol.2 2025</title>
+</head>
+<body>
+    <h1>  課題登録フォーム </h1> 
+    <form action="{{ url_for('register_kadai') }}" method="post" enctype="multipart/form-data">
+        <input type="number" name="number" id="kadaiNumber" placeholder="課題番号 / Kadai Number"><br>
+        <input type="number" name="point" id="kadaiPoint" placeholder="配点 / Point Value"><br>
+        <input type="file" name="img" id="imageUpload" accept="image/*"><br>
+        <button class="highlighted" type="submit">登録</button>
+    </form>
+    <form action="{{ url_for('register_kadai') }}" method="post">
+    <table>
+    <tr>
+        <th>課題番号 / Kadai Number</th>
+        <th>配点 / Point Value</th>
+        <th>画像 / Image</th>
+        <th>削除 / Delete</th>
+    </tr>
+
+    {% for kadai in kadai_list %}
+    <tr>
+        <td>{{ kadai.number }}</td>
+        <td>{{ kadai.point }}</td>
+        <td>
+            {% if kadai.img %}
+                <img src="{{ kadai.img }}" width="400">
+            {% else %}
+                <img src="/static/images/kadai/noimage.jpg" width="400">
+            {% endif %}
+        </td>
+        <td>
+            <button name="action" value="{{ kadai.number }}" type="submit">✖</button>
+        </td>
+    </tr>
+    {% endfor %}
+</body>
+</html>

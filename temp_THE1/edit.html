@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>THE|1 – GIVE IT EVERYTHING – Vol.4 Supported by adidasTERREX-</title>
+</head>
+<body>
+    <h2>{{category}} No.{{data.id}}</h2>
+    <h3>{{data.player}}</h3>
+    <button type="submit">確定</button>
+    <table>
+        <tr>
+            <td>TOP(1)</td>
+            <td>ZONE(1)</td>
+            <td>TOP(2)</td>
+            <td>ZONE(2)</td>
+            <td>TOP(3)</td>
+            <td>ZONE(3)</td>
+            <td>TOP(4)</td>
+            <td>ZONE(4)</td>
+            <td>pt.</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="number" value={{data.t1}} name="t1">
+            </td>
+            <td>
+                <input type="number" value={{data.z1}} name="z1">
+            </td>
+            <td>
+                <input type="number" value={{data.t2}} name="t2">
+            </td>
+            <td>
+                <input type="number" value={{data.z2}} name="z2">
+            </td>
+            <td>
+                <input type="number" value={{data.t3}} name="t3">
+            </td>
+            <td>
+                <input type="number" value={{data.z3}} name="z3">
+            </td>
+            <td>
+                <input type="number" value={{data.t4}} name="t4">
+            </td>
+            <td>
+                <input type="number" value={{data.z4}} name="z4">
+            </td>
+            <td>
+                {{data.total}}
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

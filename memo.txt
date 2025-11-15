@@ -1,0 +1,7 @@
+mySQL起動：
+
+mysql.server start
+
+終了：
+
+mysql.server stop
