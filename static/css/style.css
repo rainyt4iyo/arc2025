@@ -20,6 +20,17 @@ body > img {
     margin-bottom: 0;
 }
 
+.QR{
+    width: 40%;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.view{
+    width: 30%;
+    margin: 0 auto;
+}
+
 /* メインコンテナ */
 main {
     padding: 20px;
@@ -74,9 +85,9 @@ h5 {
 
 /* 段落とテキスト */
 p {
-    margin-bottom: 15px;
     font-size: 14px;
     line-height: 1.8;
+    text-align: center;
 }
 
 /* セクションスタイル */

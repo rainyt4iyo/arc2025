@@ -13,27 +13,26 @@ import qrcode
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, '..', 'static', 'images', 'kadai')
+QR_FOLDER = os.path.join(BASE_DIR, '../static/images/qr')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['QR_FOLDER'] = QR_FOLDER
 
-def qrimg(uuid, save_path):
+def generate_qr(url, save_dir, filename):
+    os.makedirs(save_dir, exist_ok=True)
+    file_path = os.path.join(save_dir, filename)
+
     qr = qrcode.QRCode(
         version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
         box_size=10,
         border=4,
     )
-    #ここは変える！！！
-    #url = "https://climbing-day2025.kaiz.jp/qrpage/" + uuid
-
-    url = "https://climbing-day2025.kaiz.jp/qrpage/" + uuid
-
-    #
-
     qr.add_data(url)
-    qr.make()
+    qr.make(fit=True)
+
     img = qr.make_image(fill_color="black", back_color="white")
-    img.save(save_path)
-    return img
+    img.save(file_path)
+    return file_path
+
 
 def crop_center_ratio(img_path, save_path, ratio_w=4, ratio_h=1):
 
@@ -76,6 +75,7 @@ def input(UUID):
         sql = "SELECT * FROM kadai"
         cursor.execute(sql)
         kadai_list = cursor.fetchall()
+        print(kadai_list)
         return render_template('testapp/input.html', UUID=UUID, kadai_list=kadai_list)
     
 
@@ -255,10 +255,30 @@ def qrpage(UUID):
                            cursorclass=pymysql.cursors.DictCursor)
     cursor = conn.cursor()
     try:
-        sql = "SELECT * FROM player WHERE UUID=%s"
-        cursor.execute(sql, (UUID,))
+        sql = "select * from player where uuid = %s"
+        val = UUID
+        cursor.execute(sql, val)
         player = cursor.fetchone()
+        conn.commit()
     finally:
         cursor.close()
         conn.close()
-    return render_template('testapp/qrpage.html', UUID=UUID, player=player)
+
+    save_dir = app.config['QR_FOLDER']
+    filename = f"{UUID}.png"
+    url = "http://127.0.0.1:5002/input/" + UUID
+    print(save_dir)
+    generate_qr(url, save_dir, filename)
+    qr_url = url_for('static', filename=f'images/qr/{filename}')
+
+    return render_template(
+        'testapp/qrpage.html',
+        qr_url=qr_url,
+        UUID=UUID,
+        url=url,
+        player=player
+    )
+
+
+
+  

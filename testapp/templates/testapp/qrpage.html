@@ -12,7 +12,8 @@
     <h1>QRコードページ / QR Code Page</h1>
     <h2>QRコードを読み込んでください / Scan this QR-CODE</h2>
     <h3>Name : {{ player.name }} さん</h3>
-    <h4>category : {{player.category}} </h4>
+    <h4>category : {{ player.category }} </h4>
+    <img src="{{ qr_url }}" alt="QR Code" class="QR">
     
     <footer>
         <p> Judgesheet Assistant made by T4 and kaiz. </p>

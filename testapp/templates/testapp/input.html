@@ -11,6 +11,14 @@
 <body>
     <h1>記録フォーム / Input Form</h1>
     <h3>{{ UUID }}</h3>
+    {% for i in kadai_list%}
+        <p>{{ i.number }}, {{ i.point }}pt.</p><br>
+        {% if i.img %}
+            <img class="view" src="{{ i.img }}" width="100">
+        {% else %}
+            <img class="view" src="/static/images/kadai/noimage.jpg" width="100">
+        {% endif %}
+    {% endfor %}
     <footer>
         <p> Judgesheet Assistant made by T4 and kaiz. </p>
     </footer>
