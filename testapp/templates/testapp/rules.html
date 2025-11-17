@@ -9,14 +9,11 @@
     <title>ARC’TERYX CLIMBING DAY Vol.2 2025</title>
 </head>
 <body>
-    <h1>QRコードページ / QR Code Page</h1>
-    <h2>QRコードを読み込んでください / Scan this QR-CODE</h2>
-    <h3>Name : {{ player.name }} さん, category : {{ player.category }} </h3>
-    <h4><a href="{{ url }}">{{ url }}</a></h4>
-    <img src="{{ qr_url }}" alt="QR Code" class="QR">
-    
-    <footer>
-        <p> Judgesheet Assistant made by T4 and kaiz. </p>
-    </footer>
+    <img src="{{ url_for('static', filename='images/header_cut.jpg') }}" alt="ARC’TERYX CLIMBING DAY Vol.2 2025 Header Image">
+    <h1>ルール / Rules</h1>
+    <button onclick="location.href='/mainpage/{{UUID}}'">メインページへ</button>
+    <button onclick="location.href='/input/{{UUID}}'" class="highlighted">記録フォームへ</button>
+    <br>
+    <p>ルールです.</p>
 </body>
 </html>

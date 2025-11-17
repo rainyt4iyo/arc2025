@@ -10,15 +10,36 @@
 </head>
 <body>
     <h1>記録フォーム / Input Form</h1>
-    <h3>{{ UUID }}</h3>
-    {% for i in kadai_list%}
-        <p>{{ i.number }}, {{ i.point }}pt.</p><br>
-        {% if i.img %}
-            <img class="view" src="{{ i.img }}" width="100">
+    <h2>Name : {{ player.name }}, 　　Category : {{ player.category }}</h2>
+    <button onclick="location.href='/mainpage/{{player.UUID}}'">メインページへ</button>
+    <button onclick="location.href='/ranking/{{player.UUID}}'">リアルタイムリザルトへ</button>
+    <br>
+    <form method="post" action="{{ url_for('input', UUID=player.UUID) }}">
+    {% for i in kadai_list %}
+    <div class="kadai-item">
+    <div class="kadai-top">
+        <div class="kadai-info">
+            <p class="title">No.{{ loop.index }} / {{ i.point }}pt</p>
+        </div>
+        {% if i.completed == False %}
+            <button type="submit" name="send" value="{{ i.number }}" class="sendbutton">SEND!</button>
         {% else %}
-            <img class="view" src="/static/images/kadai/noimage.jpg" width="100">
+            <button type="submit" name="delete" value="{{ i.number }}" class="deletebutton">DELETE</button>
         {% endif %}
-    {% endfor %}
+    </div>
+
+    {% if i.img %}
+        {% if i.completed == True %}
+            <img class="kadai-img" src="{{ i.monoimg }}">
+        {% else %}
+            <img class="kadai-img" src="{{ i.img }}">
+        {% endif %}
+    {% else %}
+        <img class="kadai-img" src="/static/images/kadai/noimage.jpg">
+    {% endif %}
+</div>
+{% endfor %}
+</form>
     <footer>
         <p> Judgesheet Assistant made by T4 and kaiz. </p>
     </footer>

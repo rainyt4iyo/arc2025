@@ -12,6 +12,10 @@
     <h1>  課題登録フォーム </h1> 
     <form action="{{ url_for('register_kadai') }}" method="post" enctype="multipart/form-data">
         <input type="number" name="number" id="kadaiNumber" placeholder="課題番号 / Kadai Number"><br>
+        <select name="category" id="kadaiCategory" placeholder="カテゴリー / Category">
+            <option value="alpha">alpha</option>
+            <option value="beta">beta</option>
+            <option value="gamma">gamma</option>
         <input type="number" name="point" id="kadaiPoint" placeholder="配点 / Point Value"><br>
         <input type="file" name="img" id="imageUpload" accept="image/*"><br>
         <button class="highlighted" type="submit">登録</button>
@@ -20,6 +24,7 @@
     <table>
     <tr>
         <th>課題番号 / Kadai Number</th>
+        <th>カテゴリー / Category</th>
         <th>配点 / Point Value</th>
         <th>画像 / Image</th>
         <th>削除 / Delete</th>
@@ -28,6 +33,7 @@
     {% for kadai in kadai_list %}
     <tr>
         <td>{{ kadai.number }}</td>
+        <td>{{ kadai.category }}</td>
         <td>{{ kadai.point }}</td>
         <td>
             {% if kadai.img %}

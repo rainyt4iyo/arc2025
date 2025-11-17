@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>ARC'TERYX CLIMBING DAY Vol.2 2025</title>
+</head>
+<body>
+    <br>
+    <h1>リアルタイムリザルト</h1>
+    <h2>category : {{ player.category }}</h2>
+    <button onclick="location.href='/mainpage/{{player.UUID}}'">メインページへ</button>
+    <button onclick="location.href='/input/{{player.UUID}}'" class="highlighted">記録フォームへ</button>
+    
+    <table class="ranking-table">
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+        {% for i in scores_dict %}
+            {% if i.highlight%}
+            <tr class="highlighted-row" id="section">
+                <td>{{ i.rank }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.total_score }} pt</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>{{ i.rank }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.total_score }} pt</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <footer>
+        <p> Judgesheet Assistant made by T4 and kaiz. </p>
+    </footer>
+</body>
+</html>

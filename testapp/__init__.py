@@ -3,7 +3,7 @@ import pymysql
 
 app = Flask(__name__, 
             static_folder='../static',
-            template_folder='templates')  # この行を追加
+            template_folder='templates') 
 
 app.config.from_object('testapp.config')
 
@@ -14,7 +14,7 @@ conn = pymysql.connect(host='localhost',
                        cursorclass=pymysql.cursors.DictCursor)
 cursor = conn.cursor()
 
-sql = "CREATE TABLE IF NOT EXISTS kadai (number INT UNIQUE, point INT, img VARCHAR(255))"
+sql = "CREATE TABLE IF NOT EXISTS kadai (number INT UNIQUE, point INT, category VARCHAR(255), img VARCHAR(255))"
 cursor.execute(sql)
 conn.commit()
 sql = """

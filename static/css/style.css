@@ -85,10 +85,23 @@ h5 {
 
 /* 段落とテキスト */
 p {
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 20px;
+    margin-top: 30px;
+    line-height: 1.7;
     text-align: center;
 }
+
+p.title {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-left: 42px;
+    margin-bottom: 10px;
+    line-height: 1.7;
+    text-align: center;
+    font-weight: bold;
+}
+
+
 
 /* セクションスタイル */
 section {
@@ -148,6 +161,61 @@ button.secondary:hover {
     background-color: #555;
 }
 
+.kadai-item {
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.kadai-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* 🔹ボタンをテキストの底に揃える */
+  padding: 0 20px 10px; 
+}
+
+.kadai-info {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 4px; /* 🔹行の底を調整して自然に見せる */
+}
+
+.sendbutton {
+  padding: 12px 20px;
+  width: 50%; /* 🔹高さアップ */
+  font-size: 1.1rem;  /* 🔹見やすく */
+  line-height: 1.2;
+  background: #e57373;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-right: 25px;
+}
+
+.deletebutton {
+  padding: 12px 20px; 
+  width: 50%;
+  font-size: 1.1rem;  /* 🔹見やすく */
+  line-height: 1.2;
+  background: #525151;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: bold;
+  margin-right: 25px;
+}
+
+.kadai-img {
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    margin: 10px auto 0;
+    border-radius: 8px;
+}
+
 /* テーブルスタイル */
 table {
     width: 80%;
@@ -157,6 +225,7 @@ table {
     font-size: 20px;
     text-align: center;
     border: #818181 2px solid;
+    height: 200px;
 }
 
 thead {
@@ -340,6 +409,44 @@ footer p {
 
 .hidden {
     display: none;
+}
+
+
+
+/* ===== Highlight Animation Row ===== */
+.highlighted-row {
+  color: #fff;
+  background: #6ea3ff !important;
+  font-weight: 700;
+  animation: glowRepeat 1.5s infinite;
+}
+
+@keyframes glowRepeat {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 200, 0, 0.0);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(151, 255, 246, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 200, 0, 0.0);
+  }
+}
+
+/* ===== Hover Effect ===== */
+.ranking-table tr:hover:not(.highlighted-row) {
+  background: #e9e9e9;
+  transition: 0.2s;
+}
+
+/* スマホ表示対応 */
+@media (max-width: 480px) {
+  .ranking-table {
+    font-size: 1.2rem;
+  }
+  .ranking-table th, .ranking-table td {
+    padding: 10px 5px;
+  }
 }
 
 /* レスポンシブデザイン（タブレット以上） */
