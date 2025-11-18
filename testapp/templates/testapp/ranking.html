@@ -21,18 +21,18 @@
             <th>Name</th>
             <th>Score</th>
         </tr>
-        {% for i in scores_dict %}
+        {% for i in ranking_list %}
             {% if i.highlight%}
             <tr class="highlighted-row" id="section">
                 <td>{{ i.rank }}</td>
                 <td>{{ i.name }}</td>
-                <td>{{ i.total_score }} pt</td>
+                <td>{{ i.score }} pt</td>
             </tr>
             {% else %}
             <tr>
                 <td>{{ i.rank }}</td>
                 <td>{{ i.name }}</td>
-                <td>{{ i.total_score }} pt</td>
+                <td>{{ i.score }} pt</td>
             {% endif %}
         </tr>
         {% endfor %}

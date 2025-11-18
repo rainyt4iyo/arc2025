@@ -14,7 +14,7 @@ conn = pymysql.connect(host='localhost',
                        cursorclass=pymysql.cursors.DictCursor)
 cursor = conn.cursor()
 
-sql = "CREATE TABLE IF NOT EXISTS kadai (number INT UNIQUE, point INT, category VARCHAR(255), img VARCHAR(255))"
+sql = "CREATE TABLE IF NOT EXISTS kadai (number INT UNIQUE, point INT, img VARCHAR(255))"
 cursor.execute(sql)
 conn.commit()
 sql = """

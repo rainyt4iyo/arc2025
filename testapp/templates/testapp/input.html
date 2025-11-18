@@ -19,12 +19,13 @@
     <div class="kadai-item">
     <div class="kadai-top">
         <div class="kadai-info">
-            <p class="title">No.{{ loop.index }} / {{ i.point }}pt</p>
+            <p class="title">No.{{ loop.index }} </p>
+            <p class="senders">完登者数: {{ i.senders }}人,　現在のポイント: {{ i.point }}pt</p>
         </div>
-        {% if i.completed == False %}
-            <button type="submit" name="send" value="{{ i.number }}" class="sendbutton">SEND!</button>
-        {% else %}
+        {% if i.completed == True %}
             <button type="submit" name="delete" value="{{ i.number }}" class="deletebutton">DELETE</button>
+        {% else %}
+            <button type="submit" name="send" value="{{ i.number }}" class="sendbutton">SEND!</button>
         {% endif %}
     </div>
 

@@ -26,6 +26,103 @@ def get_connection():
                            database='cd2025',
                            cursorclass=pymysql.cursors.DictCursor)
 
+def count_senders(category):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        if category:
+            sql = "SELECT DISTINCT player_id, kadai_id from record WHERE rec=1 AND category=%s"
+            val = category
+            cursor.execute(sql, val)
+        else:
+            sql = "SELECT DISTINCT player_id, kadai_id from record WHERE rec=1"
+            cursor.execute(sql)
+        records = cursor.fetchall()
+        conn.commit()
+        count_of_sender = {}
+        for record in records:
+            kadai_id = record['kadai_id']
+            if kadai_id in count_of_sender:
+                count_of_sender[kadai_id] += 1
+            else:
+                count_of_sender[kadai_id] = 1
+        return count_of_sender
+    finally:
+        cursor.close()
+        conn.close()
+
+
+def score_of_everyone(category):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        if category:
+            sql = """
+            SELECT record.player_id,
+                   record.kadai_id,
+                   kadai.point,
+                   player.name
+            FROM record
+            JOIN kadai ON record.kadai_id = kadai.number
+            JOIN player ON record.player_id = player.id
+            WHERE record.rec = 1 AND record.category = %s
+            """
+            cursor.execute(sql, (category,))
+        else:
+            sql = """
+            SELECT record.player_id,
+                   record.kadai_id,
+                   kadai.point,
+                   player.name
+            FROM record
+            JOIN kadai ON record.kadai_id = kadai.number
+            JOIN player ON record.player_id = player.id
+            WHERE record.rec = 1
+            """
+            cursor.execute(sql)
+
+        records = cursor.fetchall()
+        conn.commit()
+
+        senders_list = count_senders(category)
+        player_scores = {}
+
+        for record in records:
+            pid = record['player_id']
+            pname = record['name']
+            kid = record['kadai_id']
+
+            if kid not in senders_list:
+                continue
+            
+            point = int(record['point'] / senders_list[kid])
+
+            if pid not in player_scores:
+                player_scores[pid] = {
+                    'player_id': pid,
+                    'name': pname,
+                    'score': 0
+                }
+
+            player_scores[pid]['score'] += point
+
+        ranking_list = sorted(player_scores.values(), key=lambda x: x['score'], reverse=True)
+        print(ranking_list)
+
+        rank = 1
+        prev_score = None
+
+        for idx, player in enumerate(ranking_list):
+            if player['score'] != prev_score:
+                player['rank'] = idx + 1
+                prev_score = player['score']
+        return ranking_list
+    
+    finally:
+        cursor.close()
+        conn.close()
+
+
 def delete_extension(filename):
     return os.path.splitext(filename)[0]
 
@@ -98,28 +195,38 @@ def input(UUID):
             val = UUID
             cursor.execute(sql, val)
             player = cursor.fetchone()
-            category = player['category']
-            sql = "SELECT * FROM kadai WHERE category=%s ORDER BY number ASC"
-            val = category
-            cursor.execute(sql, val)
+            conn.commit()
+            sql = "SELECT * FROM kadai ORDER BY number ASC"
+            cursor.execute(sql)
             kadai_list = cursor.fetchall()
             conn.commit()
 
+            senders_count = count_senders(category=player['category'])
+            print(senders_count)
+
             for kadai in kadai_list:
-                sql = "SELECT rec FROM record WHERE player_id=(SELECT id FROM player WHERE UUID=%s) AND kadai_id=%s"
-                vals = (UUID, kadai['number'])
-                cursor.execute(sql, vals)
-                record = cursor.fetchone()
+                sql = "SELECT * FROM record WHERE kadai_id=%s"
+                val = (kadai['number'])
+                cursor.execute(sql, val)
+                record = cursor.fetchall()
                 conn.commit()
-                if record and record['rec'] == 1:
-                    kadai['completed'] = True
-                    kadai['monoimg'] = delete_extension(kadai['img']) + "_mono.png"
+
+                if kadai['number'] in senders_count:
+                    kadai['senders'] = senders_count[kadai['number']]
+                    kadai['point'] = int(kadai['point'] / senders_count[kadai['number']])
                 else:
-                    kadai['completed'] = False
-            print(kadai_list)
+                    kadai['senders'] = 0
+
+                for i in record:
+                    if player['id'] == i['player_id'] and i['rec'] == 1:
+                        kadai['completed'] = True
+                        kadai['monoimg'] = delete_extension(kadai['img']) + "_mono.png"
+                    else:
+                        kadai['completed'] = False
         finally:
-            cursor.close()
-            conn.close()
+                
+                cursor.close()
+                conn.close()
 
         return render_template('testapp/input.html', player=player, kadai_list=kadai_list)
     
@@ -160,69 +267,7 @@ def input(UUID):
             cursor.close()
             conn.close()        
 
-        return redirect(url_for('input', UUID=UUID))
-    
-
-@app.route('/ranking/<UUID>')
-def ranking(UUID):
-    if request.method == 'GET':
-        conn = get_connection()
-        cursor = conn.cursor()
-        try:
-            sql = "SELECT * FROM player WHERE UUID=%s"
-            val = UUID
-            cursor.execute(sql, val)
-            player = cursor.fetchone()
-            conn.commit()
-
-            sql = """SELECT 
-                record.category, 
-                record.player_id, 
-                record.kadai_id, 
-                player.name, 
-                kadai.point
-
-                from record
-                left join player on record.player_id = player.id
-                right join kadai on record.kadai_id = kadai.number
-                where record.rec = 1
-                ORDER BY record.player_id ASC
-                """
-            cursor.execute(sql)
-            records = cursor.fetchall()
-            conn.commit()
-            scores_dict = {}
-            print(records)
-            for record in records:
-                print(record)
-                if scores_dict.get(record['player_id']) is None:
-                    scores_dict[record['player_id']] = {
-                        'name': record['name'],
-                        'total_score': 0
-                    }
-                scores_dict[record['player_id']]['total_score'] += record['point']
-
-            scores_dict = dict(sorted(scores_dict.items(), key=lambda x: x[1]['total_score'], reverse=True))
-            scores_dict = scores_dict.values()
-
-            rank = 1
-            prev_score = None
-
-            for i in range(len(scores_dict)):
-                row = list(scores_dict)[i]
-                if row['total_score'] != prev_score:
-                    rank = i + 1  
-                row['rank'] = rank
-                if player['name'] == row['name']:
-                    row['highlight'] = True
-                
-            print(scores_dict)
-
-        finally:
-            cursor.close()
-            conn.close()
-        return render_template('testapp/ranking.html', player=player, scores_dict=scores_dict)
-        
+        return redirect(url_for('input', UUID=UUID))        
     
 
 @app.route('/admin/register_kadai', methods=['GET','POST'], endpoint='register_kadai')
@@ -254,7 +299,6 @@ def register_kadai():
 
     # ここからは「登録」
     number = request.form.get('number')
-    category = request.form.get('category')
     point = request.form.get('point')
     
     if not number or not point:
@@ -288,8 +332,8 @@ def register_kadai():
             return "課題番号がすでに登録されています"
 
         try:
-            sql = "INSERT INTO kadai (number, category, point, img) VALUES (%s, %s, %s, %s)"
-            vals = (number, category, point, img_path)
+            sql = "INSERT INTO kadai (number, point, img) VALUES (%s, %s, %s)"
+            vals = (number, point, img_path)
             cursor.execute(sql, vals)
             conn.commit()
             print(f"DBに登録しました: {vals}")
@@ -395,6 +439,30 @@ def qrpage(UUID):
         player=player
     )
 
+
+@app.route('/ranking/<UUID>')
+def ranking(UUID):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        sql = "SELECT id, UUID, category FROM player WHERE UUID=%s"
+        val = UUID
+        cursor.execute(sql, val)
+        player = cursor.fetchone()
+        conn.commit()
+    finally:
+        cursor.close()
+        conn.close()
+
+    ranking_list = score_of_everyone(category=player['category'])
+    for i in ranking_list:
+        if i['player_id'] == player['id']:
+            i['highlight'] = True
+        else:
+            i['highlight'] = False
+    print(ranking_list)
+    
+    return render_template('testapp/ranking.html', ranking_list=ranking_list, UUID=UUID, player=player)
 
 
   
