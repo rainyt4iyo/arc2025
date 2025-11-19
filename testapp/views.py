@@ -463,6 +463,3 @@ def ranking(UUID):
     print(ranking_list)
     
     return render_template('testapp/ranking.html', ranking_list=ranking_list, UUID=UUID, player=player)
-
-
-  
