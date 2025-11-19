@@ -6,7 +6,7 @@ After=network.target
 User=gyate
 WorkingDirectory=/home/gyate/cd2025
 Environment="PATH=/home/gyate/venv"
-ExecStart=/home/gyate/venv/binpython server.py
+ExecStart=/home/gyate/venv/bin/python server.py
 Restart=always
 
 [Install]

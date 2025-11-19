@@ -9,7 +9,6 @@ import os
 from PIL import Image, ImageFilter, ImageMath
 import uuid
 import qrcode
-from flask_socketio import SocketIO, emit   
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
