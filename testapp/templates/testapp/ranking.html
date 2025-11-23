@@ -9,12 +9,14 @@
     <title>ARC'TERYX CLIMBING DAY Vol.2 2025</title>
 </head>
 <body>
-    <br>
-    <h1>リアルタイムリザルト</h1>
-    <h2>category : {{ player.category }}</h2>
-    <button onclick="location.href='/mainpage/{{player.UUID}}'">メインページへ</button>
-    <button onclick="location.href='/input/{{player.UUID}}'" class="highlighted">記録フォームへ</button>
-    
+    <div class="fixed-header">
+        <h2>Live Result (Category : {{ player.category | upper}})</h2>
+        <div class="buttons">
+        <button class="white" onclick="location.href='/mainpage/{{player.UUID}}'">メインページへ</button>
+        <button onclick="location.href='/input/{{player.UUID}}'" class="red">記録フォームへ</button>
+        </div>
+    </div>
+    <div class="body-offset2">
     <table class="ranking-table">
         <tr>
             <th>Rank</th>
@@ -37,6 +39,7 @@
         </tr>
         {% endfor %}
     </table>
+    </div>
     
     <footer>
         <p> Judgesheet Assistant made by T4 and kaiz. </p>

@@ -123,6 +123,8 @@ def score_of_everyone(category):
 
 
 def delete_extension(filename):
+    if filename is None:
+        return None
     return os.path.splitext(filename)[0]
 
 
@@ -219,7 +221,10 @@ def input(UUID):
                 for i in record:
                     if player['id'] == i['player_id'] and i['rec'] == 1:
                         kadai['completed'] = True
-                        kadai['monoimg'] = delete_extension(kadai['img']) + "_mono.png"
+                        if kadai['img']:
+                            kadai['monoimg'] = delete_extension(kadai['img']) + "_mono.png"
+                        else:
+                            kadai['monoimg'] = "/static/images/kadai/noimage.jpg"
                     else:
                         kadai['completed'] = False
         finally:
@@ -426,6 +431,7 @@ def qrpage(UUID):
     save_dir = app.config['QR_FOLDER']
     filename = f"{UUID}.png"
     url = "http://climbingday_2025.kaiz.jp/input/" + UUID
+    #url = "http://127.0.0.1:5002/input/" + UUID
     print(save_dir)
     generate_qr(url, save_dir, filename)
     qr_url = url_for('static', filename=f'images/qr/{filename}')

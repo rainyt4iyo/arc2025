@@ -10,17 +10,22 @@
 </head>
 <body>
     <h1>記録フォーム / Input Form</h1>
-    <h2>Name : {{ player.name }}, 　　Category : {{ player.category }}</h2>
-    <button onclick="location.href='/mainpage/{{player.UUID}}'">メインページへ</button>
-    <button onclick="location.href='/ranking/{{player.UUID}}'">リアルタイムリザルトへ</button>
-    <br>
+    <div class="fixed-header">
+        <br> 
+        <h2>Name : {{ player.name }} 　　Category : {{ player.category | upper}}</h2>
+        <div class="buttons">
+        <button class="white" onclick="location.href='/mainpage/{{player.UUID}}'">イベント概要 / ルール</button>
+        <button class="white" onclick="location.href='/ranking/{{player.UUID}}'">Live Result</button>
+        </div>
+    </div>
+    <div class="body-offset"> 
     <form method="post" action="{{ url_for('input', UUID=player.UUID) }}">
     {% for i in kadai_list %}
     <div class="kadai-item">
     <div class="kadai-top">
         <div class="kadai-info">
-            <p class="title">No.{{ loop.index }} </p>
-            <p class="senders">完登者数: {{ i.senders }}人,　現在のポイント: {{ i.point }}pt</p>
+            <p class="title">No.{{ loop.index }}</p>
+            <small>完登: {{ i.senders }}人<br>Current Point: {{ i.point }}pt</small>
         </div>
         {% if i.completed == True %}
             <button type="submit" name="delete" value="{{ i.number }}" class="deletebutton">DELETE</button>
