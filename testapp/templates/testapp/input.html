@@ -12,9 +12,10 @@
     <h1>記録フォーム / Input Form</h1>
     <div class="fixed-header">
         <br> 
-        <h2>Name : {{ player.name }} 　　Category : {{ player.category | upper}}</h2>
+        <h2>Name : {{ player.name }} </h2>
+        <h2>Category : {{ player.category | upper}}</h2>
         <div class="buttons">
-        <button class="white" onclick="location.href='/mainpage/{{player.UUID}}'">イベント概要 / ルール</button>
+        <button class="white" onclick="location.href='/rules/{{player.UUID}}'">ルール / Rules</button>
         <button class="white" onclick="location.href='/ranking/{{player.UUID}}'">Live Result</button>
         </div>
     </div>

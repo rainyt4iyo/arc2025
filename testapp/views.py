@@ -29,13 +29,13 @@ def count_senders(category):
     conn = get_connection()
     cursor = conn.cursor()
     try:
-        if category:
+        if category == None:
+            sql = "SELECT DISTINCT player_id, kadai_id from record WHERE rec=1"
+            cursor.execute(sql)
+        else:
             sql = "SELECT DISTINCT player_id, kadai_id from record WHERE rec=1 AND category=%s"
             val = category
             cursor.execute(sql, val)
-        else:
-            sql = "SELECT DISTINCT player_id, kadai_id from record WHERE rec=1"
-            cursor.execute(sql)
         records = cursor.fetchall()
         conn.commit()
         count_of_sender = {}
@@ -83,7 +83,7 @@ def score_of_everyone(category):
         records = cursor.fetchall()
         conn.commit()
 
-        senders_list = count_senders(category)
+        senders_list = count_senders(None)
         player_scores = {}
 
         for record in records:
@@ -115,6 +115,7 @@ def score_of_everyone(category):
             if player['score'] != prev_score:
                 player['rank'] = idx + 1
                 prev_score = player['score']
+        print(ranking_list)
         return ranking_list
     
     finally:
@@ -202,7 +203,8 @@ def input(UUID):
             kadai_list = cursor.fetchall()
             conn.commit()
 
-            senders_count = count_senders(category=player['category'])
+            all_senders_count = count_senders(None)
+            senders_count = count_senders(player['category'])
             print(senders_count)
 
             for kadai in kadai_list:
@@ -212,25 +214,27 @@ def input(UUID):
                 record = cursor.fetchall()
                 conn.commit()
 
-                if kadai['number'] in senders_count:
-                    kadai['senders'] = senders_count[kadai['number']]
-                    kadai['point'] = int(kadai['point'] / senders_count[kadai['number']])
+                if kadai['number'] in all_senders_count:
+                    kadai['senders'] = all_senders_count[kadai['number']]
+                    kadai['point'] = int(kadai['point'] / kadai['senders'])
                 else:
                     kadai['senders'] = 0
 
                 for i in record:
+                    print(i)
                     if player['id'] == i['player_id'] and i['rec'] == 1:
                         kadai['completed'] = True
                         if kadai['img']:
                             kadai['monoimg'] = delete_extension(kadai['img']) + "_mono.png"
                         else:
                             kadai['monoimg'] = "/static/images/kadai/noimage.jpg"
-                    else:
-                        kadai['completed'] = False
+                    
         finally:
                 
                 cursor.close()
                 conn.close()
+
+        print(kadai_list)
 
         return render_template('testapp/input.html', player=player, kadai_list=kadai_list)
     
@@ -430,8 +434,8 @@ def qrpage(UUID):
 
     save_dir = app.config['QR_FOLDER']
     filename = f"{UUID}.png"
-    url = "http://climbingday_2025.kaiz.jp/input/" + UUID
-    #url = "http://127.0.0.1:5002/input/" + UUID
+    #url = "http://climbingday_2025.kaiz.jp/input/" + UUID
+    url = "http://127.0.0.1:5002/input/" + UUID
     print(save_dir)
     generate_qr(url, save_dir, filename)
     qr_url = url_for('static', filename=f'images/qr/{filename}')
