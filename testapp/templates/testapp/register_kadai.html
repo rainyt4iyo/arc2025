@@ -12,7 +12,7 @@
     <h1>  課題登録フォーム </h1> 
     <form action="{{ url_for('register_kadai') }}" method="post" enctype="multipart/form-data">
         <input type="number" name="number" id="kadaiNumber" placeholder="課題番号 / Kadai Number"><br>
-        <input type="number" name="point" id="kadaiPoint" placeholder="配点 / Point Value"><br>
+        <input type="number" name="point" id="kadaiPoint" placeholder="配点 / Point Value" value="1000"><br>
         <input type="file" name="img" id="imageUpload" accept="image/*"><br>
         <button class="highlighted" type="submit">登録</button>
     </form>
