@@ -359,7 +359,7 @@ def register_player():
         cursor = conn.cursor()
 
         try:
-            sql = "SELECT * FROM player ORDER BY id ASC"
+            sql = "SELECT * FROM player ORDER BY id DESC"
             cursor.execute(sql)
             player_list = cursor.fetchall()
             print(player_list)
