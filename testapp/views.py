@@ -434,8 +434,8 @@ def qrpage(UUID):
 
     save_dir = app.config['QR_FOLDER']
     filename = f"{UUID}.png"
-    #url = "http://climbingday_2025.kaiz.jp/input/" + UUID
-    url = "/input/" + UUID
+    url = "http://climbingday_2025.kaiz.jp/input/" + UUID
+    #url = "/input/" + UUID
     print(save_dir)
     generate_qr(url, save_dir, filename)
     qr_url = url_for('static', filename=f'images/qr/{filename}')
