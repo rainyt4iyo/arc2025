@@ -22,6 +22,11 @@
     <div class="body-offset"> 
     <form method="post" action="{{ url_for('input', UUID=player.UUID) }}">
     {% for i in kadai_list %}
+    {% if loop.index == 1 %}
+        <h3> Competetion Wall </h3>
+    {% elif loop.index == 13 %}
+        <h3> Bleau Wall </h3>
+    {% endif %}
     <div class="kadai-item">
     <div class="kadai-top">
         <div class="kadai-info">
