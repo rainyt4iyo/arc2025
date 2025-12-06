@@ -9,7 +9,7 @@ app.config.from_object('testapp.config')
 
 conn = pymysql.connect(host='localhost',
                        user='t4',
-                       password='-------',
+                       password='t4_password',
                        database='cd2025',
                        cursorclass=pymysql.cursors.DictCursor)
 cursor = conn.cursor()

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <title>THE|1 – GIVE IT EVERYTHING – Vol.4 Supported by adidasTERREX-</title>
+</head>
+<body>
+  <div class="container">
+  <img class="header" src="/static/images/banner_1280p.png">
+  <br>
+  <h3>ABOUT "THE | 1"</h3>
+  <button class="white_button" onclick="location.href='https://pump-climbing.com/gym/bpump/%e3%80%90%e9%96%8b%e5%82%ac%e7%99%ba%e8%a1%a8%e3%80%91the1-give-it-everything-vol-4-supported-by-adidasterrex/'">大会概要 / Overview</button>
+  <button class="white_button" onclick="location.href='/rules'">大会ルール / Rules</button>
+  <button class="white_button" onclick="location.href='/competitors'">出場選手 / Athletes</button>
+  <br>
+  <br>
+  <h2>リアルタイムリザルト <br> Live Results</h2>
+  <br>
+  <h3> DAY 1 <br> THE|1 - Aspirant -</h3>
+    <button class="black_button live" onclick="location.href='/ranking/asp_men'"> - 男子予選  / Men's qualifying round - </button>
+    <button class="black_button live" onclick="location.href='/ranking/asp_wmn'"> - 女子予選  / Women's qualifying round - </button>
+    <button class="white_button" onclick="location.href='/ranking/f_asp_men'"> - 男子決勝 / Men's Final - </button>
+    <button class="white_button" onclick="location.href='/ranking/f_asp_wmn'"> - 女子決勝 / Women's Final - </button>
+  <br>
+  <h3> DAY 2 <br> THE|1 - GIVE IT EVERYTHING -</h3>
+    <button class="white_button" onclick="location.href='/ranking/fin_men'"> - 男子予選  / Men's qualifying round - </button>
+    <button class="white_button" onclick="location.href='/ranking/fin_wmn'"> - 女子予選  / Women's qualifying round - </button>
+    <button class="white_button" onclick="location.href='/ranking/f_fin_men'"> - 男子決勝 / Men's Final - </button>
+    <button class="white_button" onclick="location.href='/ranking/f_fin_wmn'"> - 女子決勝 / Women's Final - </button>
+  <br>
+  <p size="2">The 1 JudgeSheet Assistant @ T4 and kaiz</p>
+  </div>
+</body>
+</html>

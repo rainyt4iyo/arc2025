@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_edit.css') }}"/>
+    <title>ADMIN</title>
+</head>
+<body>
+  <div class="table-container">
+    <table>
+      <tr>
+        <td>ASP</td>
+        <td>男子</td>
+      </tr>
+      {% for i in data_list[0] %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.player}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <table>
+      <tr>
+        <td>ASP</td>
+        <td>女子</td>
+      </tr>
+      {% for i in data_list[1] %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.player}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <table>
+      <tr>
+        <td>FIN</td>
+        <td>男子</td>
+      </tr>
+      {% for i in data_list[2] %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.player}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <table>
+      <tr>
+        <td>FIN</td>
+        <td>女子</td>
+      </tr>
+      {% for i in data_list[3] %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.player}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>

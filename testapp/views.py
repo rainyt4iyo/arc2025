@@ -21,7 +21,7 @@ app.config['QR_FOLDER'] = QR_FOLDER
 def get_connection():
     return pymysql.connect(host='localhost',
                            user='t4',
-                           password='-------',
+                           password='t4_password',
                            database='cd2025',
                            cursorclass=pymysql.cursors.DictCursor)
 

@@ -1,0 +1,498 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000000;
+  color: #e8eaf6;
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, Meiryo, sans-serif;
+  line-height: 1.8;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.header {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 30px 20px 20px;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 30px 20px 15px;
+  padding: 15px;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  border-bottom: 3px solid #6e6e6e;
+  background: rgba(158, 158, 158, 0.1);
+  border-radius: 8px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 25px 20px 15px;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 20px 20px 12px;
+  color: #b0bec5;
+  letter-spacing: 0.05em;
+  padding: 8px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #64b5f6;
+  border-radius: 4px;
+}
+
+p {
+  text-align: center;
+  margin: 20px 20px 15px;
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  color: #cfd8dc;
+  line-height: 1.7;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+}
+
+p[size="2"] {
+  margin: 40px 20px 20px;
+  padding: 15px;
+  font-size: 0.85rem;
+  color: #7986cb;
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+}
+button {
+  display: block;
+  width: calc(88% - 40px);
+  max-width: 500px;
+  margin: 12px auto;
+  padding: 18px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: visible;
+}
+
+/* LIVEバッジ */
+button.live::after {
+  content: 'LIVE';
+  position: absolute;
+  top: 50%;
+  right: -45px;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #ff1744 0%, #d50000 100%);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(255, 23, 68, 0.5);
+  letter-spacing: 0.05em;
+  animation: livePulse 1.5s infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(255, 23, 68, 0.5);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 23, 68, 0.8),
+                0 0 0 4px rgba(255, 23, 68, 0.2);
+    opacity: 0.95;
+  }
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* 黒ボタン（強調スタイル） */
+.black_button {
+  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+  color: #ffffff;
+  border: 2px solid #64b5f6;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4),
+              0 0 0 0 rgba(100, 181, 246, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4),
+                0 0 0 0 rgba(100, 181, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(30, 136, 229, 0.6),
+                0 0 0 8px rgba(100, 181, 246, 0);
+  }
+}
+
+.black_button:hover {
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(30, 136, 229, 0.6);
+}
+
+.black_button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(30, 136, 229, 0.4);
+}
+
+/* 白ボタン（標準スタイル） */
+.white_button {
+  background: rgba(255, 255, 255, 0.911);
+  color: #000000;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.white_button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(56, 56, 56, 0.5);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(100, 181, 246, 0.3);
+}
+
+.white_button:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* スマートフォン最適化 */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+    margin: 20px 15px 15px;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    margin: 20px 15px 10px;
+    padding: 12px;
+  }
+  
+  h3 {
+    font-size: 1rem;
+    margin: 20px 15px 10px;
+  }
+  
+  h4 {
+    font-size: 0.95rem;
+    margin: 15px 15px 10px;
+  }
+  
+  p {
+    font-size: 0.9rem;
+    margin: 15px 15px 12px;
+    padding: 10px 12px;
+  }
+  
+  table {
+    width: calc(100% - 30px);
+    margin: 15px auto;
+  }
+  
+  table thead tr th {
+    font-size: 0.9rem;
+    padding: 14px 10px;
+  }
+  
+  table td {
+    padding: 12px 10px;
+    font-size: 0.9rem;
+  }
+  
+  table td:first-child {
+    width: 100px;
+  }
+  
+  table th:first-child {
+    width: 100px;
+  }
+  
+  table td:last-child {
+    padding-left: 15px;
+  }
+  
+  button {
+    width: calc(100% - 30px);
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    margin: 10px auto;
+  }
+}
+
+/* 小型スマートフォン */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+  }
+  
+  button {
+    padding: 14px 18px;
+    font-size: 0.9rem;
+  }
+  
+  table thead tr th {
+    font-size: 0.85rem;
+    padding: 12px 8px;
+  }
+  
+  table td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+  
+  table td:first-child {
+    width: 80px;
+  }
+  
+  table th:first-child {
+    width: 80px;
+  }
+  
+  table td:last-child {
+    padding-left: 12px;
+  }
+}
+
+/* タッチデバイス用の調整 */
+@media (hover: none) {
+  button:hover {
+    transform: none;
+  }
+  
+  button:active {
+    transform: scale(0.98);
+  }
+}
+/* テーブル */
+table {
+  width: 90%;
+  margin: 30px auto; /* ← 左右中央寄せ */
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #000000;
+  background: rgb(255, 255, 255);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  text-align: center; /* ← 中身も中央寄せ */
+}
+
+thead {
+  background: #333333;
+}
+
+thead tr {
+  border: none;
+}
+
+thead tr th,
+thead th {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 18px 15px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  border: none;
+  background: transparent;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background: rgba(100, 181, 246, 0.15);
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr td,
+tbody td {
+  padding: 16px 15px;
+  text-align: center;
+  color: #000000;
+  font-size: 1.1rem;
+  border: none;
+}
+
+tbody tr td:first-child,
+tbody td:first-child {
+  font-weight: 700;
+  color: #000000;
+  font-size: 1.1rem;
+  width: 150px;
+}
+
+tbody tr td:last-child,
+tbody td:last-child {
+  text-align: left;
+  font-weight: 700;
+  padding-left: 15px;
+  font-size: 1.1rem;
+}
+
+/* クレジット */
+p[size="2"] {
+  text-align: center;
+  margin: 50px 0 30px;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: #7986cb;
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* スマートフォン最適化 */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin: 15px 0 25px;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    margin: 25px 0 15px;
+    padding: 12px;
+  }
+  
+  table {
+    margin: 20px 0;
+  }
+  
+  thead tr th,
+  thead th {
+    font-size: 0.9rem;
+    padding: 14px 10px;
+  }
+  
+  tbody tr td,
+  tbody td {
+    padding: 12px 10px;
+    font-size: 0.95rem;
+  }
+  
+  tbody tr td:first-child,
+  tbody td:first-child {
+    width: 100px;
+    font-size: 1rem;
+  }
+  
+  tbody tr td:last-child,
+  tbody td:last-child {
+    padding-left: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  table {
+    width: 90%;
+    margin: 15px auto;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+  }
+  
+  thead tr th,
+  thead th {
+    font-size: 0.85rem;
+    padding: 12px 8px;
+  }
+  
+  tbody tr td,
+  tbody td {
+    padding: 10px 8px;
+    font-size: 0.9rem;
+  }
+  
+  tbody tr td:first-child,
+  tbody td:first-child {
+    width: 80px;
+    font-size: 0.95rem;
+  }
+  
+  tbody tr td:last-child,
+  tbody td:last-child {
+    padding-left: 8px;
+    font-size: 0.9rem;
+  }
+}
