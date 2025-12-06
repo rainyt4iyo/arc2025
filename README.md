@@ -1,4 +1,4 @@
-# クライミングイベント管理システム
+# ARC'TERIX "Climbing Day 2025" Competetion
 
 ## 概要
 
